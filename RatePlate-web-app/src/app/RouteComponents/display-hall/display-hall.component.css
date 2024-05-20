@@ -1,0 +1,109 @@
+.hall {
+    font-family: Helvetica;
+}
+
+.img-display{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+img {
+    width: 92vw;
+    height: auto;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.info p {
+    margin: 0;
+    margin-left: 2em;
+    font-family: 'Roboto', sans-serif; /* Tesla uses the Roboto font */
+}
+
+.info p strong{
+    background-color: yellow;
+}
+/*
+.ratings h1{
+    margin: 1em;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #00ccff; 
+    font-size: 3em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+}
+
+.rating {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 2em;
+}
+
+.rating-detail, .message {
+    margin: 1em;
+}
+
+.rating p{
+    margin: 1em;
+}*/
+
+
+.rating {
+    border: 1px solid #ccc; /* Lighter border color for a softer look */
+    border-radius: 10px;
+    margin: 2em;
+    background-color: #f9f9f9; /* Light grey background */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.rating:hover {
+    transform: translateY(-5px); /* Slightly raise the rating on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Increased shadow on hover for more prominence */
+}
+
+.rating-detail, .message {
+    margin: 1em;
+    padding: 0.5em; /* Padding for better text spacing */
+    border-bottom: 1px solid #eee; /* Separator for visual structure */
+}
+
+.rating-detail:last-child, .message:last-child {
+    border-bottom: none; /* Remove bottom border for the last element */
+}
+
+.rating p {
+    margin: 1em;
+    color: #333; /* Darker text color for better contrast */
+    font-size: 1.1em; /* Slightly larger text for readability */
+}
+
+.summary {
+    margin: 2em;
+    margin-top: 3em;
+}
+
+button {
+    margin: 2em;
+    width: 8em;
+    padding: 10px;
+    background-color: #00ccff; /* Matching the title color */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer; /* Cursor effect on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.rating-button button:hover {
+    background-color: #0099cc; /* Slightly darker shade on hover */
+}

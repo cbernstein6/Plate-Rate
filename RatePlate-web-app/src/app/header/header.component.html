@@ -1,0 +1,20 @@
+<header>
+    <div class="logo">
+        <a routerLink="/" routerLinkActive="active"><img src="./assets/logo.png" alt="Logo"></a>
+    </div>
+
+    <div class="others">
+        <nav>
+            <ul>
+                <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/aboutus" routerLinkActive="active">About Us</a></li>
+                <li *ngIf="!(checkAuth() | async)"><a routerLink="/login" routerLinkActive="active">Sign in</a></li>
+                <li *ngIf="(checkAuth() | async)"><a routerLink="/main" routerLinkActive="active" (click)="signOut()">Sign Out</a></li>
+            </ul>
+        </nav>
+
+        
+
+    </div>
+
+</header>

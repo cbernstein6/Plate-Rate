@@ -1,0 +1,67 @@
+.main {
+    font-family: Helvetica;
+}
+
+.user-forms {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    margin-top: 8em;
+}
+
+.form-box {
+    border: 3px solid grey;
+    border-radius: 10px;
+    margin: 1.5em;
+}
+
+.form-body {
+    margin: 0.8em;
+}
+
+input{
+    width: 20em; /* Sets the width of the input field */
+    height: 1em; /* Sets the height of the input field */
+    padding: 8px 12px; /* Adds padding inside the input field */
+    font-size: 16px; /* Sets the font size */
+    border: 1px solid #ccc; /* Sets the border */
+    border-radius: 4px; /* Rounds the corners of the input field */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow inside */
+}
+
+input[type="text"]:focus {
+    border-color: #66afe9; /* Changes the border color when the input is focused */
+    outline: none; /* Removes the default focus outline */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 0 8px rgba(102, 175, 233, 0.6); /* Adds a stronger shadow when focused */
+}
+
+.form-group label, .form-group input, button{
+    margin: 0.3em;
+}
+
+.form-box h2{
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+    margin-left: 0.3em;
+}
+
+button {
+    /* width: 100%; */
+    padding: 1.3em;
+    padding-top: 0.7em;
+    padding-bottom: 0.8em;
+    background-color: #00ccff; /* Matching the title color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer; /* Cursor effect on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 0.7em;
+    margin-bottom: 0.5em;
+}
+
+button:hover {
+    background-color: #0099cc; /* Slightly darker shade on hover */
+}
+

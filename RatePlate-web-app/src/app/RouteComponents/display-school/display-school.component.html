@@ -1,0 +1,17 @@
+<div class="display">
+    <div class="info">
+        <div class="info-img">
+            <img src="/assets/{{imagePath}}">
+        </div>
+        <div class="info-text">
+            <h1>{{title}}</h1>
+            <h1>{{location}}</h1>
+        </div>
+    </div>
+
+    <div class="halls">
+        <app-hall-view 
+        *ngFor="let hallEl of halls"
+        [hall] = "hallEl"></app-hall-view>
+    </div>
+</div>

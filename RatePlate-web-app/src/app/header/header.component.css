@@ -1,0 +1,49 @@
+.others nav ul{
+    display: flex;
+    justify-content: flex-end;
+    /* flex-direction: row; */
+}
+
+.others nav ul li{
+    margin-left: 20px;
+}
+
+.user-forms {
+    display: flex;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo img{
+    width: 15%;
+}
+
+nav {
+  text-align: center; 
+  padding: 10px 0; 
+}
+
+nav ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline; 
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none; 
+  font-size: 16px; 
+  font-weight: bold; 
+  color: black;
+}
+
+nav ul li a:hover {
+  color: #3bb1bf;
+}
+

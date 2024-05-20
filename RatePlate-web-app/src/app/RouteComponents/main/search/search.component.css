@@ -1,0 +1,66 @@
+.title {
+    text-align: center;
+    font-family: 'Roboto', sans-serif; 
+    color: #fdb119; 
+    font-size: 3em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    margin-top: 3em; 
+    text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.search-position {
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: white;
+
+    border-radius: 10px;
+    background-image: url("../../../../assets/picnic.jpg");
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+button:hover {
+    background-color: #575757; /* Slightly darker shade on hover */
+}
+
+button {
+    margin-bottom: 2.5em;
+    font-family: 'Roboto', sans-serif;
+    color: #f6f6f6;
+    font-size: 1.5em;
+    text-align: center;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    background-color: #939393;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.school-submit {
+    width: 6em;
+}
+
+.lower-display {
+    display: flex;
+    flex-direction: column;
+    /* align-items: start; */
+    justify-content: center;
+    margin: 0;
+}
+
+.lower {
+    margin: 1em;
+}
+

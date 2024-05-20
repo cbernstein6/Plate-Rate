@@ -1,0 +1,23 @@
+.summary img{
+    max-width: 100%;
+    height: auto;
+}
+
+.summary {
+    border: 2px solid black;
+    border-radius: 25px;
+    
+    max-width: 20vw;
+    /* height: 48vh; */
+    height: 100%;
+    
+    
+}
+
+
+.elements {
+    margin-left: 2px;
+}
+.outside-class {
+    
+}

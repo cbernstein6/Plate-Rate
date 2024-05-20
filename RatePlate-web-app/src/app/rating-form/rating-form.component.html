@@ -1,0 +1,24 @@
+<div class="send-rating">
+<form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <h1>REVIEW {{title}} Dining Hall</h1>
+    
+    <div *ngFor="let category of categories">
+      <label [for]="category">{{ category | titlecase }}</label>
+      <select [formControlName]="category" [id]="category">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="feedback">Feedback</label>
+      <textarea formControlName="feedback" id="feedback"></textarea>
+    </div>
+  
+    <button type="submit">Submit</button>
+    
+  </form>
+</div>

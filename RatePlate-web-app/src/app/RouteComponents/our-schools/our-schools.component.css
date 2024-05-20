@@ -1,0 +1,14 @@
+.title {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #CC0000;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.schools-display {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}

@@ -1,0 +1,16 @@
+<div class="top-schools">    
+    <div class="top-schools-display">
+        <p class="title">View our top schools</p>
+        
+        <div class="schools-display">
+            <app-school-icon
+            *ngFor="let schoolEl of schools"
+            [school]="schoolEl">
+                
+            </app-school-icon>
+            
+        </div>
+
+
+    </div>
+</div>

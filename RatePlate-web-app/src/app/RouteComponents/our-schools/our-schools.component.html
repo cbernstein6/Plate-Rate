@@ -1,0 +1,11 @@
+<div class="schools">
+    <p class="title">Our Schools</p>
+
+    <div class="schools-display">
+        <app-school-icon
+        *ngFor="let schoolEl of schools"
+        [school]="schoolEl">
+            
+        </app-school-icon>
+    </div>
+</div>

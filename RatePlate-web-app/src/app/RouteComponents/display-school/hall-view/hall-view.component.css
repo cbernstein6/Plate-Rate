@@ -1,0 +1,16 @@
+.hall-display {
+    margin: 10px;
+    
+}
+
+.img-display img{
+    height: 30vh;
+    width: auto;
+    border-radius: 10px;
+}
+
+.border {
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}

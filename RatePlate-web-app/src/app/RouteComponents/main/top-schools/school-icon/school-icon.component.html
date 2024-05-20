@@ -1,0 +1,16 @@
+<a [routerLink]="['/school']" [queryParams]="{
+    id: school.collegeId,
+    title: school.name, 
+    location: school.location, 
+    image: school.imagePath}">
+    
+<div class="summary">
+        <div class="outside-class">
+            <div class="elements">
+                <h2>{{school.name}}</h2>
+                <p>{{school.location}}</p>
+            </div>
+            <img src="assets/{{school.imagePath}}">
+        </div>
+    </div>
+</a>

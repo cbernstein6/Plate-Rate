@@ -1,0 +1,61 @@
+/* Container for the entire form */
+form {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  h1 {
+    margin-bottom: 1em;
+  }
+  
+  /* Style for all labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Style for all select elements and textarea */
+  select, textarea {
+    width: 60%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Specific style for the textarea to adjust height */
+  textarea {
+    height: 100px;
+  }
+  
+  /* Style for the submit button */
+  button {
+    width: 8em;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #004494;
+  }
+  
+  /* A generic rule to remove default margin and padding */
+  *, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  

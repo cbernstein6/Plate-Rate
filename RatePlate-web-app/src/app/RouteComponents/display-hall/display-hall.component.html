@@ -1,0 +1,41 @@
+<div class="hall">
+    <div class="img-display">
+        <img src="assets/{{imagePath}}">
+    </div>
+    <div class="info">
+        <p><strong>Name:</strong> {{title}}</p>
+        <p><strong>Location:</strong> {{location}}</p>
+        <p><strong>Average Rating:</strong> {{averageScore}} / 5</p>        
+    </div>
+
+    <div class="summary" *ngIf="detailList">
+        <h2>GRADE BOOK</h2>
+        <p>TASTE: {{detailList[0]}}</p>
+        <p>ATMOSPHERE: {{detailList[1]}}</p>
+        <p>LOCATION: {{detailList[2]}}</p>
+        <p>SERVICE: {{detailList[3]}}</p>
+        <p>CLEANLINESS: {{detailList[4]}}</p>
+        <p>MENU: {{detailList[5]}}</p>
+        <p>PRICE: {{detailList[6]}}</p>
+    </div>
+
+    <div class="rating-button">
+        <button (click)="navigateOrError()">Add Rating</button>
+    </div>
+
+    <div class="ratings">
+        <h1 style="margin-left: 1em;">Reviews</h1>
+        <div *ngFor="let rating of ratings | slice:0:totalRatings" class="rating">
+            <div class="rating-detail">
+                <p>Name: PlaceHolder-{{rating.userId}}</p>
+                <p>Grade: {{rating.score}}</p>
+            </div>
+            <div class="message">
+                <p>{{rating.message}}</p>
+            </div>
+        </div>
+
+        <button (click)="incRatings()">View More</button>
+
+    </div>
+</div>

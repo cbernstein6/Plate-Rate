@@ -1,0 +1,27 @@
+.info {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.info h1{
+    margin-left: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: -0.5px -0.5px 0 red, 0.5px -0.5px 0 red, -0.5px 0.5px 0 red, 0.5px 0.5px 0 red;
+}
+
+.display {
+    margin: 3em;
+}
+
+.halls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+img {
+    width: 40vw;
+    height: auto;
+}
+
