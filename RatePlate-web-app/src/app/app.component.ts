@@ -9,13 +9,14 @@ import { Routes, RouterModule, RouterOutlet } from '@angular/router';
 
 
 
+
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     providers: [HttpRequest],
-    imports: [HeaderComponent, RouterOutlet, HttpClientModule, RouterModule]
+    imports: [HeaderComponent, RouterOutlet, HttpClientModule, RouterModule, LoginComponent]
 })
 
 
@@ -24,8 +25,6 @@ export class AppComponent {
   userId: number = -1;
   
   users: any;
-
-  
   
   routes: Routes = [
     {path: '', component: MainComponent},
@@ -33,5 +32,5 @@ export class AppComponent {
     {path: 'login', component: LoginComponent},
   ];
 
-  ngOnInit(){}
+  // ngOnInit(){}
 }
