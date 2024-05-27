@@ -42,7 +42,6 @@ builder.Services.AddScoped<IUserServices,UserServices>();
 builder.Services.AddScoped<IHallServices,HallServices>();
 builder.Services.AddScoped<IRatingServices,RatingServices>();
 builder.Services.AddScoped<ICollegeServices,CollegeServices>();
-builder.Services.AddScoped<ITokenServices,TokenServices>();
 
 
 builder.Services.AddAutoMapper(typeof(UserMapper));

@@ -1,5 +1,6 @@
 import { BehaviorSubject } from "rxjs";
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root',  // This makes the service available in the root injector
@@ -7,25 +8,31 @@ import { Injectable } from "@angular/core";
 export class AuthService {
     private currTokenVar = new BehaviorSubject<boolean>(this.hasToken());
 
-    constructor(){}
+    constructor(private router : Router, private ngZone : NgZone) {
+    }
     
     checkObservable(){
         return this.currTokenVar.asObservable();
     }
 
     hasToken(){
-        // console.log("signed in: "+ localStorage.getItem("jwtToken") != null && localStorage.getItem("jwtToken") != "")
-        let token: string | null = localStorage.getItem("jwtToken");
+        const token: string | null = localStorage.getItem("auth_token");
         return token != null && token != "";
     }
 
     signIn(token: string) {
-        localStorage.setItem("jwtToken", token);
-        this.currTokenVar.next(this.hasToken());
+        localStorage.setItem('auth_token', token);
+        this.ngZone.run(() => {
+            this.currTokenVar.next(true);
+            this.router.navigate(['/main']);
+        });
     }
 
     signOut() {
-        localStorage.removeItem("jwtToken");
-        this.currTokenVar.next(this.hasToken());
+        localStorage.removeItem('auth_token');
+        this.ngZone.run(() => {
+        this.currTokenVar.next(false);
+        this.router.navigate(['/login']);
+        });
     }
 }

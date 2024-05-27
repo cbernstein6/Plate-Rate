@@ -5,6 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { UserProfileService } from '../services/userprofile.service';
+import { UserProfile } from '../../../models/UserProfile';
 
 @Component({
   selector: 'app-header',
@@ -15,42 +17,35 @@ import { AuthService } from '../services/auth.service';
 })
 
 
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
-  @Output() loginReq = new EventEmitter<boolean>();
-  login: boolean = false;
-  users: any;
-
-
+  profile!: UserProfile;
+  isMenuVisible: boolean = false;
   
-  // signUpForm: FormGroup;
-  
-  constructor(private http: HttpRequest, private auth: AuthService) {}
+  constructor(private http: HttpRequest, private auth: AuthService, private userProfile : UserProfileService) {}
 
   ngOnInit(){
-    
-    // this.http.GetUserList().subscribe(users => {
-    //   this.users = users;
-    // })
-
-    // console.log(this.users);
-    
+    this.userProfile.getUserProfile().subscribe(user => {
+      this.profile = user;
+    });
   }
 
   checkAuth(){
     return this.auth.checkObservable();
   }
 
+  hasToken(){
+    return this.auth.hasToken();
+  }
+
+
+
   signOut(){
     this.auth.signOut();
   }
 
-
-  showLogin(){
-    this.login = true;
-    this.loginReq.emit(this.login);
+  changeMenuDisplay(){
+    this.isMenuVisible = !this.isMenuVisible;
   }
 
-  
-  
 }

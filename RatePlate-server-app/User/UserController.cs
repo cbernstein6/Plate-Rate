@@ -18,10 +18,8 @@ namespace RatePlateServerApp.User
     {
         
         private readonly IUserServices _services;
-        private readonly ITokenServices _tokenServices;
-        public UserController(IUserServices services, ITokenServices tokenServices){
+        public UserController(IUserServices services){
             _services = services;
-            _tokenServices = tokenServices;
         }
 
         [HttpGet("GetUser/{id}")]
@@ -40,15 +38,6 @@ namespace RatePlateServerApp.User
             return _services.AddUser(user);
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] UserLoginDto user){
-            
-            if(!_services.ValidateUser(user)) return BadRequest(new {message="Not Valid Credentials"});
-            
-
-            var token = _tokenServices.GenerateToken(user);
-            return Ok(new {token = token, id = user.id});
-        }
 
         [Authorize]
         [HttpPut]

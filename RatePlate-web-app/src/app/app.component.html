@@ -1,5 +1,4 @@
 <div>
-    <app-header></app-header>
+    <app-header *ngIf="checkSignedIn() | async"></app-header>
     <router-outlet></router-outlet>
-    <app-login></app-login>
 </div>
