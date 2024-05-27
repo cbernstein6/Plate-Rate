@@ -1,2 +1,5 @@
 **/obj/
 **/bin/RatePlate-web-app/.angular
+RatePlate-server-app/bin
+RatePlate-web-app/node_modules
+RatePlate.UserServices.Tests/bin
