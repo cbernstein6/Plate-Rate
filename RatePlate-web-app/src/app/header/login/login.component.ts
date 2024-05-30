@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { jwtDecode } from 'jwt-decode';
 import { UserProfileService } from '../../services/userprofile.service';
+import { HttpRequest } from '../../services/http.service';
 
 declare var google: any;
 
@@ -9,6 +10,7 @@ declare var google: any;
   selector: 'app-login',
   standalone: true,
   imports: [],
+  providers: [HttpRequest, UserProfileService],
   templateUrl: './login.component.html',
 styleUrl: './login.component.css'
 })
@@ -35,14 +37,7 @@ export class LoginComponent {
 
   handleCredentialResponse(response: any){
     this.auth.signIn(response.credential);
-    const decodedToken: any = jwtDecode(response.credential);
-    // console.log(decodedToken);
 
-    const user: any = {
-      username: decodedToken.given_name,
-      email: decodedToken.email,
-      picture: decodedToken.picture
-    };
-    this.userProfile.setUserProfile(user);
+    this.userProfile.initializeUserProfile();
   }
 }

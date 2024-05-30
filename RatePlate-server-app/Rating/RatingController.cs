@@ -50,19 +50,19 @@ namespace RatePlateServerApp.Hall
             return Ok(ratings);
         }
 
-        [Authorize]
+        
         [HttpPost]
         public bool CreateRating([FromBody] RatingDto rating){
             return _ratings.CreateRating(rating);
         }
 
-        [Authorize]
+        
         [HttpPut]
         public bool UpdateRating([FromForm] RatingDto rating){
            return _ratings.ModifyRating(rating);
         }
 
-        [Authorize]
+        
         [HttpDelete]
         public bool DeleteRating([FromForm] int id){
             return _ratings.DeleteRating(id);

@@ -40,7 +40,7 @@ namespace RatePlateServerApp.Hall
             return Ok(halls);
         }
 
-        [Authorize]
+        
         [HttpPost]
         public ActionResult AddHall([FromBody] string hallName)
         {
@@ -48,7 +48,7 @@ namespace RatePlateServerApp.Hall
             return Ok();
         }
 
-        [Authorize]
+        
         [HttpDelete("{id}")]
         public ActionResult DeleteHall(int id)
         {

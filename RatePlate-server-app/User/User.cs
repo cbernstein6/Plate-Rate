@@ -5,8 +5,9 @@ namespace RatePlate.Models
     public class User{
         [Key]
         public int UserId { get; set; }
-        public string Username { get; set; }
-        public string HashedPassword { get; set; }
-        public int NumRatings { get; set; } = 0;
+        public string Email {get; set; }
+        public string FirstName {get; set; }
+        public string LastName {get; set; }
+        public string Picture { get; set; }
     }
 }

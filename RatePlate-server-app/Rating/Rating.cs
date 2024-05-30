@@ -10,7 +10,6 @@ namespace RatePlate.Models
     {
         [Key]
         public int RatingId { get; set; }
-        public float Score { get; set; }
         public string Message { get; set; }
         public int UserId { get; set; }
         public int HallId { get; set; }

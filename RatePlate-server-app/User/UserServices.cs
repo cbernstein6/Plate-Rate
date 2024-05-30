@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using RatePlateserverapp.Userlogindto;
 using RatePlate.Interface;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace RatePlate.Services
 {
@@ -28,11 +29,15 @@ namespace RatePlate.Services
 
 
 
-        public UserDto GetUser(int id)
+        public UserDto GetUser(string email)
         {
-            var user = context.Users.Find(id);
+            var user = context.Users.FirstOrDefault(e => e.Email == email);
+
+            if(user == null) 
+                return null;
+
             var userDto = mapper.Map<UserDto>(user);
-            return userDto != null ? userDto : new UserDto { UserId = 1, Username = "myUserName", NumRatings = 0 }; //TODO: make sure this is right, swapped from sql query
+            return userDto;
         }
 
         public List<UserDto> GetUserList()
@@ -43,75 +48,20 @@ namespace RatePlate.Services
             return listDto;
         }
 
-        public UserDto AddUser(UserSignupDto user)
-        {
-            string name = user.Username, password = user.Password, pass2 = user.Redopassword;
-            if(password != pass2){
-                throw new ArgumentException("Passwords do not equal");
-            }
-
-            if(context.Users.Any(x => x.Username == name)) 
-                throw new ArgumentException("Username is already taken");
-
-            User newUser = new User{Username = name, HashedPassword = getHashSha256(password)};
-            context.Users.Add(newUser);
+        
+        public int CreateUser(UserDto userDto){
+            Console.WriteLine("Adding user "+userDto.Email+" to list!");
+            var user = mapper.Map<User>(userDto);
+            context.Users.Add(user);
             context.SaveChanges();
 
-            return mapper.Map<UserDto>(newUser);
+            return GetUser(userDto.Email).UserId;    
         }
+        
 
-        public bool ValidateUser(UserLoginDto userLoginDto){
-            User user = context.Users.FirstOrDefault(x => x.Username == userLoginDto.UserName);
-            if(user == null) return false;
-
-            if(user.HashedPassword == getHashSha256(userLoginDto.Password)){
-                userLoginDto.id = user.UserId;
-                return true;
-            }
-            return false;
-        }
-
-        public UserDto ChangePassword(int id, string newPassword)
-        {
-            var user = context.Users.Find(id);
-            
-            if(user == null){
-                throw new ArgumentException("User does not exist");
-            }
-            else{
-                var hashed = getHashSha256(newPassword);
-                user.HashedPassword = hashed;
-                context.SaveChanges();
-            }
-            return mapper.Map<UserDto>(user);
-        }
-
-        public bool DeleteUser(int id)
-        {
-            var user = context.Users.Find(id);
-            if(user != null){
-                context.Users.Remove(user);
-                context.SaveChanges();
-                return true;
-            }else{
-                return false;
-            }
-        }
+        
 
 
-        public static string getHashSha256(string text)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(text);
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] hash = sha256Hash.ComputeHash(bytes);
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < hash.Length; i++)
-                {
-                    builder.Append(hash[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
+        
     }
 }

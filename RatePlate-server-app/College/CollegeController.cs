@@ -33,21 +33,19 @@ namespace RatePlateServerApp
             return _services.GetColleges();
         }
 
-        [Authorize]
         [HttpPost]
         public bool AddCollege(string collegeName, string location)
         {
             return _services.AddCollege(collegeName, location);
         }
         
-        [Authorize]
         [HttpPut("{id}")]
         public bool UpdateCollege(int id, string collegeName, string location)
         {
             return _services.UpdateCollege(id, collegeName, location);
         }
 
-        [Authorize]
+        
         [HttpDelete("{id}")]
         public bool DeleteCollege(int id)
         {

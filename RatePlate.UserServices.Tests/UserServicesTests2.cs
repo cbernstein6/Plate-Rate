@@ -7,51 +7,42 @@ using RatePlate.Data;
 using RatePlate.Dto;
 using RatePlate.Models;
 using RatePlate.Services;
-using Moq; 
-using System.Linq.Expressions;
+using Moq;
 using Xunit;
 
 public class UserServicesTests2
 {
-    private Mock<DbSet<User>> mockUsers;
     private Mock<DataContext> mockContext;
     private Mock<IMapper> mockMapper;
     private UserServices userServices;
 
     public UserServicesTests2()
     {
-        mockUsers = new Mock<DbSet<User>>();
         mockContext = new Mock<DataContext>();
         mockMapper = new Mock<IMapper>();
-
-        mockContext.Setup(c => c.Users).Returns(mockUsers.Object);
 
         userServices = new UserServices(mockContext.Object, mockMapper.Object);
     }
 
     [Fact]
-    public void GetUser_ReturnsUserDto_WhenUserExists()
+    public void AddUser_WithValidInput_ShouldAddUserAndReturnCorrectUserDto()
     {
-        // Assign
-        var userId = 1;
-        var expectedUser = new User { UserId = userId, Username = "myUserName", HashedPassword = "myPassword", NumRatings = 0 };
-        UserDto expectedUserDto = new UserDto { UserId = userId, Username = "myUserName", NumRatings = 0 };
+        // Arrange
+        var userSignupDto = new UserSignupDto { Username = "newUser", Password = "password", Redopassword = "password" };
+        var expectedUserDto = new UserDto { Username = "newUser" };
 
-        mockUsers.Setup(u => u.Find(It.IsAny<Expression<Func<User, bool>>>())).Returns(expectedUser);
-        mockMapper.Setup(m => m.Map<UserDto>(expectedUser)).Returns(expectedUserDto);
+        var users = new List<User>();
+        mockContext.Setup(c => c.Users).ReturnsDbSet(users);
+        mockContext.Setup(c => c.SaveChanges()).Verifiable();
+        mockMapper.Setup(m => m.Map<UserDto>(It.IsAny<User>())).Returns(expectedUserDto);
 
         // Act
-        var result = userServices.GetUser(userId);
+        var result = userServices.AddUser(userSignupDto);
 
         // Assert
-        Assert.Equal(expectedUserDto.UserId, result.UserId);
+        mockContext.Verify(c => c.Users.Add(It.IsAny<User>()), Times.Once);
+        mockContext.Verify(c => c.SaveChanges(), Times.Once);
+        mockMapper.Verify(m => m.Map<UserDto>(It.IsAny<User>()), Times.Once);
         Assert.Equal(expectedUserDto.Username, result.Username);
-        Assert.Equal(expectedUserDto.NumRatings, result.NumRatings);
-    }
-
-    [Fact]
-    public void GetUserList_ReturnsUserList()
-    {
-            
     }
 }

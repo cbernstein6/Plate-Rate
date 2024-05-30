@@ -5,13 +5,14 @@ import { routes } from './app/services/app.routes.module';
 import { appConfig } from './app/app.config';
 
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideToastr } from 'ngx-toastr';
+import { importProvidersFrom } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 // Merge appConfig with the router provider
 const config = {
   ...appConfig,
-  providers: [provideRouter(routes), provideAnimations(), provideToastr()],
+  providers: [provideRouter(routes), provideAnimations(), importProvidersFrom(MatSnackBarModule)],
 };
 
 bootstrapApplication(AppComponent, config)

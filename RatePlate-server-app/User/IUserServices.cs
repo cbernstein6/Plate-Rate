@@ -10,11 +10,9 @@ namespace RatePlate.Interface
 {
     public interface IUserServices
     {
-        UserDto GetUser(int id);
+        UserDto GetUser(string email);
         List<UserDto> GetUserList();
-        UserDto AddUser(UserSignupDto user);
-        bool DeleteUser(int userId);
-        UserDto ChangePassword(int id, string newpassword);
-        bool ValidateUser(UserLoginDto userLoginDto);
+        int CreateUser(UserDto user);
+        
     }
 }
