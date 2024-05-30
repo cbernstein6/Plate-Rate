@@ -1,5 +1,4 @@
 export interface RatingDto {
-    Score: number,
     Message: string,
     UserId: number,
     HallId: number,

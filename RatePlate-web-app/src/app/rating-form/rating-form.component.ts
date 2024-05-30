@@ -3,13 +3,15 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpRequest } from '../services/http.service';
 import { RatingDto } from '../../../models/RatingDto';
-import { ActivatedRoute } from '@angular/router';
-import { ToastrService, ToastNoAnimation } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserProfileService } from '../services/userprofile.service';
+import { UserProfile } from '../../../models/UserProfile';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rating-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './rating-form.component.html',
   styleUrl: './rating-form.component.css'
 })
@@ -17,10 +19,18 @@ export class RatingFormComponent {
 
   reviewForm!: FormGroup;
   categories = ['taste', 'atmosphere', 'location', 'service', 'cleanliness', 'menu', 'price'];
+  
   title!: string;
   id!: number;
+  location!: string;
+  averageScore!: number;
+  imagePath!: string;
 
-  constructor(private fb: FormBuilder, private http: HttpRequest, private route: ActivatedRoute, private toastr: ToastrService){
+  profile: UserProfile | null = null;
+
+  constructor(private fb: FormBuilder, private http: HttpRequest, private route: ActivatedRoute,
+      private userProfile : UserProfileService, private snackBar : MatSnackBar, private router : Router){
+
     this.reviewForm = this.fb.group({
       taste: '',
       atmosphere: '',
@@ -35,7 +45,17 @@ export class RatingFormComponent {
     this.route.queryParams.subscribe(res => {
       this.title = res['title'];
       this.id = res['id'];
+      this.location = res['location'];
+      this.averageScore = res['averageScore'];
+      this.imagePath = res['imagePath'];
     })
+
+  }
+
+  ngOnInit() {
+    this.userProfile.getUserProfile().subscribe(user => {
+      this.profile = user;
+    });
   }
 
 
@@ -46,7 +66,6 @@ export class RatingFormComponent {
     var atmosphere = this.reviewForm.value.atmosphere;
     var location = this.reviewForm.value.location;
     var service = this.reviewForm.value.service;
-    console.log(service);
     var cleanliness = this.reviewForm.value.cleanliness;
     var menu = this.reviewForm.value.menu;
     var price = this.reviewForm.value.price;
@@ -54,9 +73,8 @@ export class RatingFormComponent {
     // var 
 
     const ratingData: RatingDto = {
-      Score: 0.5,
       Message: message,
-      UserId: Number(localStorage.getItem('userId')),
+      UserId: this.profile!.id,
       HallId: this.id,
       Taste: taste,
       Atmosphere: atmosphere,
@@ -65,14 +83,27 @@ export class RatingFormComponent {
       Cleanliness: cleanliness,
       Menu: menu,
       Price: price
-
     };
     
-    this.http.SendRating(ratingData,localStorage.getItem("jwtToken")!).subscribe(
+    this.http.SendRating(ratingData).subscribe(
       (response) => {
-        console.log(response);
+        this.snackBar.open('Rating submitted successfully!', 'Close', {
+          duration: 2000,
+          horizontalPosition: 'right',
+          verticalPosition: 'bottom',
+        });
+
+        setTimeout(() => {
+          this.router.navigate(['/hall'], { queryParams: {
+            title: this.title,
+            id: this.id,
+            location: this.location,
+            imagePath: this.imagePath,
+            averageScore: this.averageScore
+          }});
+        }, 2000);
       },
-      (error) => this.toastr.info('Please fill out all fields', 'Error', { positionClass: 'toast-bottom-right' })
+      (error) => console.log(error)
     );
   }
 }

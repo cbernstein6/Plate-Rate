@@ -37,7 +37,6 @@ export class DisplaySchoolComponent {
 
     this.http.GetSchoolHalls(this.id).subscribe(res => {
       this.halls = Object.values(res);
-      // console.log(this.halls[0]);
     })
   }
 

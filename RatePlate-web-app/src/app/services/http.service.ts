@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { UserLoginDto } from "../../../models/UserLoginDto";
-import { FormGroup } from "@angular/forms";
 import { RatingDto } from "../../../models/RatingDto";
-import { UserSignupDto } from "../../../models/UserSignupDto";
+import { UserProfile } from "../../../models/UserProfile";
 
 @Injectable()
 export class HttpRequest {
@@ -29,28 +27,14 @@ export class HttpRequest {
     }
     
 
-    AddUser(user: UserSignupDto){
-        // console.log("sending");
-        
-        return this.http.post('http://localhost:5119/api/User',user);
+    GetUserId(email: string){
+        return this.http.get(`http://localhost:5119/api/User/GetUser/${email}`);
+    }
+    CreateUser(user: UserProfile){
+        return this.http.post('http://localhost:5119/api/User', user);
     }
 
-    Login(loginInfo: UserLoginDto){
-        return this.http.post('http://localhost:5119/api/User/login', loginInfo);
-    }
-
-    
-    SendRating(form: RatingDto, token: string){
-        if(token == null || token == undefined) 
-            throw Error("Please sign in to send a rating");
-
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            })
-        }
-        
-        return this.http.post('http://localhost:5119/api/Rating', form, httpOptions);
+    SendRating(form: RatingDto){
+        return this.http.post('http://localhost:5119/api/Rating', form);
     }
 }

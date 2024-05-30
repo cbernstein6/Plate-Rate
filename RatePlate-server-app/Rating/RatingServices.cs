@@ -105,7 +105,6 @@ namespace RatePlate.Services
             }
 
             rating.Message = ratingDto.Message;
-            rating.Score = rating.Score;
             context.SaveChanges();
             return true;
         }

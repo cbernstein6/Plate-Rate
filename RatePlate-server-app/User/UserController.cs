@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using RatePlate.Dto;
 using RatePlate.Interface;
-using RatePlate.Services;
-using RatePlateserverapp.Userlogindto;
 
 namespace RatePlateServerApp.User
 {
@@ -22,34 +20,25 @@ namespace RatePlateServerApp.User
             _services = services;
         }
 
-        [HttpGet("GetUser/{id}")]
-        public UserDto GetUser(int id){
-            return _services.GetUser(id);
+        [HttpGet("GetUser/{email}")]
+        public int GetUser(string email){
+            UserDto user = _services.GetUser(email);
+            return user == null ? -1 : user.UserId;
         }
 
-        [Authorize]
         [HttpGet]
         public List<UserDto> GetUsers(){
             return _services.GetUserList();
         }
 
         [HttpPost]
-        public UserDto AddUser([FromBody] UserSignupDto user){
-            return _services.AddUser(user);
+        public int CreateUser([FromBody] UserDto user){
+            return _services.CreateUser(user);
         }
 
 
-        [Authorize]
-        [HttpPut]
-        public UserDto ChangePassword(int id, string newPassword){
-            return _services.ChangePassword(id, newPassword);
-        }
+        
 
-        [Authorize]
-        [HttpDelete]
-        public bool DeleteUser(int id){
-            return _services.DeleteUser(id);
-        }
 
 
     }

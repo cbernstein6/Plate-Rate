@@ -6,7 +6,7 @@ import { DisplayHallComponent } from '../RouteComponents/display-hall/display-ha
 import { RatingFormComponent } from '../rating-form/rating-form.component';
 import { AboutUsComponent } from '../header/about-us/about-us.component';
 import { OurSchoolsComponent } from '../RouteComponents/our-schools/our-schools.component';
-import { LoginComponent } from '../RouteComponents/login/login.component';
+import { LoginComponent } from '../header/login/login.component';
 
 
 export const routes: Routes = [
