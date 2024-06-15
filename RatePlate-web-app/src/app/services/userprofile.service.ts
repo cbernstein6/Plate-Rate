@@ -32,6 +32,8 @@ export class UserProfileService {
   initializeUserProfile(){
 
     const token: any = localStorage.getItem('auth_token');
+    if(token == null) return;
+    
     const decodedToken: any = jwtDecode(token);
 
     this.http.GetUserId(decodedToken).subscribe(data => {
