@@ -36,21 +36,26 @@ export class UserProfileService {
     
     const decodedToken: any = jwtDecode(token);
 
-    this.http.GetUserId(decodedToken).subscribe(data => {
-      let  userId: any = data;
+    this.http.GetUserId(decodedToken.email).subscribe(data => {
+      let  userId: number = data as number;
 
-      let user: any = {
+    let user: any = {
         id: userId,
         email: decodedToken.email,
         firstname: decodedToken.given_name,
         lastname: decodedToken.family_name,
-        picture: decodedToken.picture
+        picture: decodedToken.picture,
+        role: ""
       };
-
       if(userId == -1){
         this.http.CreateUser(user).subscribe(data => {
           user.id = data;
         });
+
+        this.router.navigate(['role-prompt']);
+      }
+      else{
+        this.router.navigate(['/main']);
       }
 
       this.setUserProfile(user);

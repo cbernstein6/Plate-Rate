@@ -13,6 +13,7 @@ namespace RatePlate.Interface
         UserDto GetUser(string email);
         List<UserDto> GetUserList();
         int CreateUser(UserDto user);
+        string GetRole(int id);
         
     }
 }
