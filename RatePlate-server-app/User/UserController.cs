@@ -36,7 +36,10 @@ namespace RatePlateServerApp.User
             return _services.CreateUser(user);
         }
 
-
+        [HttpGet("Role/{id}")]
+        public string ContainsRole(int id){
+            return _services.GetRole(id);
+        }
         
 
 

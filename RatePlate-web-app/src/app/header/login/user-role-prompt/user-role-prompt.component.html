@@ -1,0 +1,10 @@
+<form>
+    <h1>Welcome to Rate Plate!</h1>
+    <div class="form-group">
+        <label for="userRole">Select User Role</label>
+        <select class="form-control" id="userRole" [(ngModel)]="selectedRole">
+        <option *ngFor="let role of userRoles" [value]="role">{{role}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</form>

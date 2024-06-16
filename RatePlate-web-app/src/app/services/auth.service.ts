@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Injectable, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -11,7 +11,7 @@ export class AuthService {
     constructor(private router : Router, private ngZone : NgZone) {
     }
     
-    checkObservable(){
+    checkObservable() : Observable<boolean> {
         return this.currTokenVar.asObservable();
     }
 
@@ -24,7 +24,6 @@ export class AuthService {
         localStorage.setItem('auth_token', token);
         this.ngZone.run(() => {
             this.currTokenVar.next(true);
-            this.router.navigate(['/main']);
         });
     }
 

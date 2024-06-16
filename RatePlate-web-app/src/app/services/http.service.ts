@@ -37,4 +37,8 @@ export class HttpRequest {
     SendRating(form: RatingDto){
         return this.http.post('http://localhost:5119/api/Rating', form);
     }
+
+    GetRole(id: number){
+        return this.http.get(`http://localhost:5119/api/User/Role/${id}`);
+    }
 }

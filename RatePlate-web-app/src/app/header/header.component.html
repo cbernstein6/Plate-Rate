@@ -8,7 +8,7 @@
             <ul>
                 <li><a routerLink="/main" routerLinkActive="active" class="top-links">Home</a></li>
                 <li><a routerLink="/aboutus" routerLinkActive="active" class="top-links">About Us</a></li>
-                <li *ngIf="profile"><a (click)="changeMenuDisplay()"><img src="{{profile.picture}}" class="profile-picture"></a></li>
+                <li><a (click)="changeMenuDisplay()"><img src="{{profile?.picture}}" class="profile-picture"></a></li>
                 <div class="profile-menu" [ngStyle]="{'display': isMenuVisible ? 'block' : 'none'}">
                     <h5 class="email">{{profile?.email}}</h5>
                     <ul>

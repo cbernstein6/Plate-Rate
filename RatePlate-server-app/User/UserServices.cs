@@ -50,7 +50,6 @@ namespace RatePlate.Services
 
         
         public int CreateUser(UserDto userDto){
-            Console.WriteLine("Adding user "+userDto.Email+" to list!");
             var user = mapper.Map<User>(userDto);
             context.Users.Add(user);
             context.SaveChanges();
@@ -58,7 +57,9 @@ namespace RatePlate.Services
             return GetUser(userDto.Email).UserId;    
         }
         
-
+        public string GetRole(int id){
+            return this.context.Users.Find(id).Role;
+        }
         
 
 
