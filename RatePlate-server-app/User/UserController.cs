@@ -41,7 +41,10 @@ namespace RatePlateServerApp.User
             return _services.GetRole(id);
         }
         
-
+        [HttpPut]
+        public void UpdateUser([FromBody] UserDto user){
+            _services.UpdateUser(user);
+        }
 
 
     }
