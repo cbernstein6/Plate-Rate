@@ -61,7 +61,18 @@ namespace RatePlate.Services
             return this.context.Users.Find(id).Role;
         }
         
+        public void UpdateUser(UserDto userDto){
+            var newUser = mapper.Map<User>(userDto);
+            User user = context.Users.Find(newUser.UserId);
 
+            user.Email = newUser.Email;
+            user.FirstName = newUser.FirstName;
+            user.LastName = newUser.LastName;
+            user.Picture = newUser.Picture;
+            user.Role = newUser.Role;
+            
+            context.SaveChanges();
+        }
 
         
     }
