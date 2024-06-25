@@ -14,6 +14,6 @@ namespace RatePlate.Interface
         List<UserDto> GetUserList();
         int CreateUser(UserDto user);
         string GetRole(int id);
-        
+        void UpdateUser(UserDto userDto);
     }
 }

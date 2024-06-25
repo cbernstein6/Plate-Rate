@@ -12,6 +12,7 @@ namespace RatePlate.Models
         public int RatingId { get; set; }
         public string Message { get; set; }
         public int UserId { get; set; }
+        public string FirstName { get; set; }
         public int HallId { get; set; }
         public int Taste { get; set; }
         public int Atmosphere { get; set; }
