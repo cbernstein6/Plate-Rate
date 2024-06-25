@@ -82,7 +82,8 @@ export class RatingFormComponent {
       Service: service,
       Cleanliness: cleanliness,
       Menu: menu,
-      Price: price
+      Price: price,
+      FirstName: this.profile!.firstname,
     };
     
     this.http.SendRating(ratingData).subscribe(

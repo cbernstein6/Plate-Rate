@@ -8,5 +8,6 @@ export interface RatingDto {
     Service: number,
     Cleanliness: number,
     Menu: number,
-    Price: number
+    Price: number,
+    FirstName: string,
 }

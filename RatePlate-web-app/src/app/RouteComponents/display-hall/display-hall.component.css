@@ -1,5 +1,6 @@
 .hall {
     font-family: Helvetica;
+    position: relative;
 }
 
 .img-display{
@@ -9,8 +10,8 @@
 }
 
 img {
-    width: 92vw;
-    height: auto;
+    width: auto;
+    height: 80vh;
     border-radius: 10px;
 }
 
@@ -106,4 +107,21 @@ button {
 
 .rating-button button:hover {
     background-color: #0099cc; /* Slightly darker shade on hover */
+}
+
+.title {
+    font-family: 'Roboto', sans-serif; 
+    color: #ffffff; 
+    font-size: 3em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+
+    position: absolute;
+    top: 5em;
+    left: 50%;
 }

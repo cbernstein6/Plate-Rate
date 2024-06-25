@@ -1,4 +1,7 @@
 <div class="hall">
+    <div class="title">
+        <h1 class="title-text">{{title}}</h1>
+    </div>
     <div class="img-display">
         <img src="assets/{{imagePath}}">
     </div>
@@ -27,7 +30,7 @@
         <h1 style="margin-left: 1em;">Reviews</h1>
         <div *ngFor="let rating of ratings | slice:0:totalRatings" class="rating">
             <div class="rating-detail">
-                <p>Name: PlaceHolder-{{rating.userId}}</p>
+                <p>Name: PlaceHolder-{{rating}}</p>
                 <p>Grade: {{rating.score}}</p>
             </div>
             <div class="message">
