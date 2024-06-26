@@ -41,12 +41,6 @@ export class AppComponent {
   userId: number = -1;
   
   users: any;
-  
-  routes: Routes = [ //TODO: PLEASE REMOVE THIS
-    {path: '', component: MainComponent},
-    {path: 'main', component: MainComponent},
-    {path: 'login', component: LoginComponent},
-  ];
 
   constructor(private auth : AuthService, private ngZone : NgZone){}
 
