@@ -18,7 +18,7 @@ export class DisplayHallComponent {
   location: any | null;
   imagePath: any | null;
   id: any | null;
-  averageScore: any | null = 0;
+  averageScore: number = 0;
 
   ratings: any[] = [];
 
@@ -35,7 +35,6 @@ export class DisplayHallComponent {
       this.id = params['id'];
       this.title = params['name'];
       this.location = params['location'];
-      this.averageScore = params['averageScore'];
       this.imagePath = params['imagePath'];
     });
 
@@ -46,11 +45,12 @@ export class DisplayHallComponent {
     
     this.http.GetRatingDetails(this.id).subscribe((res) => {
       this.detailList = res;
+      for(let detail of this.detailList)
+        this.averageScore += detail
+      this.averageScore /= this.detailList.length;
+      this.averageScore = Number(this.averageScore.toFixed(1));
     });
 
-    // for(let detail of this.detailList)
-    //   this.averageScore += detail
-    // this.averageScore /= 7;
 
   }
   

@@ -30,7 +30,7 @@
         <h1 style="margin-left: 1em;">Reviews</h1>
         <div *ngFor="let rating of ratings | slice:0:totalRatings" class="rating">
             <div class="rating-detail">
-                <p>Name: PlaceHolder-{{rating}}</p>
+                <p>Name: {{rating.firstName}}</p>
                 <p>Grade: {{rating.score}}</p>
             </div>
             <div class="message">

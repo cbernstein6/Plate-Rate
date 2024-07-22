@@ -54,9 +54,6 @@ export class UserProfileService {
 
         this.router.navigate(['role-prompt']);
       }
-      else{
-        this.router.navigate(['/main']);
-      }
 
       this.setUserProfile(user);
     })
