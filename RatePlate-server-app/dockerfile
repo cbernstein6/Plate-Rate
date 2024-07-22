@@ -1,22 +1,21 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-
+# Use the official .NET SDK image for the build environment
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-EXPOSE 5119
+# Copy the csproj file and restore any dependencies (via NuGet)
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Copy the rest of the source code
+COPY . ./
 
-WORKDIR /src
-COPY ["RatePlate.csproj", "./"]
-RUN dotnet restore "./RatePlate.csproj"
+# Publish the application to the /app/out directory
+RUN dotnet publish -c Release -o out
 
-
-COPY . .
-WORKDIR "/src/."
-RUN dotnet build "RatePlate.csproj" -c Release -o /app/build
-RUN dotnet publish "RatePlate.csproj" -c Release -o /app/publish
-
-FROM base AS final
+# Use the official .NET runtime image for the runtime environment
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "RatePlate.dll"]
+COPY --from=build-env /app/out .
+
+# Define the entry point for the application
+ENTRYPOINT ["dotnet", "rateplate.dll"]
